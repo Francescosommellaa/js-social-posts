@@ -12,15 +12,3 @@ function handleLikeClick(id) {
         posts[id - 1].likes++;
     }
 }
-
-// Funzione per trasformare una data relativa in una data estesa
-function relativeToAbsoluteDate(monthsAgo) {
-    // Creiamo una nuova data e sottraiamo i mesi
-    let date = new Date();
-    date.setMonth(date.getMonth() - monthsAgo);
-    // Formattiamo la data in formato italiano
-    let day = date.getDate();
-    let month = date.getMonth() + 1;
-    let year = date.getFullYear();
-    return `${day}/${month}/${year}`;
-}

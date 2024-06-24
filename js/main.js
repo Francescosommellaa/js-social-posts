@@ -77,6 +77,21 @@ document.querySelectorAll('.js-like-button').forEach(button => {
     });
 });
 
+
+
+// Funzione per trasformare una data relativa in una data estesa
+function relativeToAbsoluteDate(monthsAgo) {
+    // Creiamo un nuovo oggetto Date per la data corrente
+    let date = new Date();
+    // Sottraiamo il numero di mesi
+    date.setMonth(date.getMonth() - monthsAgo);
+    // Formattiamo la data in formato italiano (gg/mm/aaaa)
+    let day = date.getDate();
+    let month = date.getMonth() + 1;
+    let year = date.getFullYear();
+    return `${day}/${month}/${year}`;
+}
+
 // Trasformiamo le date relative in date estese
 document.querySelectorAll('.post-meta__time').forEach(timeElement => {
     let monthsAgo = parseInt(timeElement.textContent.split(' ')[0]);
