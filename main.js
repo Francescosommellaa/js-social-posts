@@ -55,3 +55,37 @@ const posts = [
         "created": "2021-03-05"
     }
 ];
+
+// Creiamo un array per memorizzare gli id dei post a cui abbiamo messo "Mi Piace"
+let likedPosts = [];
+
+// Aggiungiamo un listener per il click sul pulsante "Mi Piace" in ogni post
+document.querySelectorAll('.js-like-button').forEach(button => {
+    button.addEventListener('click', function(event) {
+        event.preventDefault(); // Preveniamo il comportamento di default del click sul link
+        let postId = this.dataset.postid; // Otteniamo l'id del post dal dataset del bottone
+        handleLikeClick(postId); // Chiamiamo la funzione handleLikeClick con l'id del post
+        // Cambiamo il colore del testo del bottone
+        this.classList.toggle('liked');
+        // Se il pulsante è stato cliccato, lo rendiamo rosso
+        if (this.classList.contains('liked')) {
+            this.style.color = 'red';
+        } else {
+            // Altrimenti, lo rendiamo di nuovo normale
+            this.style.color = '';
+        }
+        // Aggiorniamo il contatore dei likes
+        document.querySelector(`#like-counter-${postId}`).textContent = posts[postId - 1].likes;
+    });
+});
+
+// Stampa i post del nostro feed
+posts.forEach(post => {
+    console.log(`ID: ${post.id}`);
+    console.log(`Contenuto: ${post.content}`);
+    console.log(`Media: ${post.media}`);
+    console.log(`Autore: ${post.author.name}`);
+    console.log(`Immagine del profilo: ${handleProfileImage(post.author.image, post.author.name)}`);
+    console.log(`Mi piace: ${post.likes}`);
+    console.log(`Data di creazione: ${formatDate(post.created)}`);
+});
